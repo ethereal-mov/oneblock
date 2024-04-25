@@ -3,8 +3,10 @@ on load:
     set {mobcooldown::*} to 0
     set {hmobcooldown::*} to 0
     set {fmobcooldown::*} to 0
+    set {sucobblecooldown::*} to 0
     set {ucobblecooldown::*} to 0
     set {cobblecooldown::*} to 0
+    set {uorecooldown::*} to 0
     set {oneblock::*} to false
 
 on damage:
@@ -62,6 +64,8 @@ on load:
   register new shaped recipe for {_superupgradedcobblegen} named "&lSUPER UPGRADED &eCobblestone Generator" using gray glazed terracotta, gray glazed terracotta, gray glazed terracotta, gray glazed terracotta, diamond, gray glazed terracotta, gray glazed terracotta, gray glazed terracotta, gray glazed terracotta with id "superupgraded_cobble_gen"
   set {_upgradedcobblegen} to gray glazed terracotta of Unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 8 cobblestone."
   register new shaped recipe for {_upgradedcobblegen} named "&lUPGRADED &eCobblestone Generator" using light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and iron ingot, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta with id "upgraded_cobble_gen"
+  set {_upgradedoregen} to purple glazed terracotta of Unbreaking 1 named "&lUPGRADED &eOre Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 4 random ores."
+  register new shaped recipe for {_upgradedoregen} named "&lUPGRADED &eOre Generator" using purple glazed terracotta and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta, and purple glazed terracotta with id "upgraded_ore_gen"
   set {_friendlymobgen} to blue glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to spawn 4 random friendly mobs."
   register new shaped recipe for {_friendlymobgen} named "&lFriendly &eMob Spawner" using cyan glazed terracotta, and cyan glazed terracotta, and cyan glazed terracotta, and cyan glazed terracotta, and water bucket, and cyan glazed terracotta, and cyan glazed terracotta, and cyan glazed terracotta, and cyan glazed terracotta with id "friendly_mob_gen"
   set {_hostilemobgen} to red glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to spawn 4 random hostile mobs."
@@ -102,25 +106,25 @@ on place:
             remove 1 bucket from the player
 on walking on any glazed terracotta:
     if player's tool is a pickaxe:
-        if event-block = light blue glazed terracotta:
+        if event-block = light blue glazed terracotta or purple glazed terracotta:
             send action bar "This is an &eOre Generator&r. Mine to &e&luse&r it." to player
         if event-block = light gray glazed terracotta or gray glazed terracotta or green glazed terracotta:
             send action bar "This is an &eCobblestone Generator&r. Mine to &e&luse&r it." to player
-        if event-block = cyan glazed terracotta:
+        if event-block = cyan glazed terracotta or red glazed terracotta or blue glazed terracotta:
             send action bar "This is an &eMob Spawner&r. Mine to &e&luse&r it." to player
     else if player's tool is a shovel:
-        if event-block = light blue glazed terracotta:
+        if event-block = light blue glazed terracotta or purple glazed terracotta:
             send action bar "This is an &eOre Generator&r. Mine to &c&lbreak&r it." to player
         if event-block = light gray glazed terracotta or gray glazed terracotta or green glazed terracotta:
             send action bar "This is an &eCobblestone Generator&r. Mine to &c&lbreak&r it." to player
-        if event-block = cyan glazed terracotta:
+        if event-block = cyan glazed terracotta or red glazed terracotta or blue glazed terracotta:
             send action bar "This is an &eMob Spawner&r. Mine to &c&lbreak&r it." to player
     else:
         if event-block = light blue glazed terracotta:
             send action bar "This is an &eOre Generator&r." to player
         if event-block = light gray glazed terracotta or gray glazed terracotta:
             send action bar "This is an &eCobblestone Generator&r." to player
-        if event-block = cyan glazed terracotta:
+        if event-block = cyan glazed terracotta or red glazed terracotta or blue glazed terracotta:
             send action bar "This is an &eMob Spawner&r." to player
 
 on break:
@@ -195,7 +199,7 @@ on break:
                 loop 5 times:
                     make player see event-block as green stained glass
                     wait 4 ticks
-                drop (cobblestone of unbreaking 1 named "&eSuper Cobblestone" with lore "Left click to decompress") 2 blocks above event-block's location without velocity
+                drop (cobblestone of unbreaking 1 named "&eSuper Cobblestone" with lore "Right click to decompress") 2 blocks above event-block's location without velocity
             set {_num} to a random integer from 0 to 10
             if {_num} > 7:
                 set {_chance} to a random integer from 1 to 4
@@ -352,6 +356,53 @@ on break:
                 wait 1 ticks
             set {fmobcooldown::%event-block's location%%player%} to 0
             make player see event-block as blue glazed terracotta
+        if event-block = purple glazed terracotta:
+            set {_num} to a random integer from 0 to 100
+            set {_amnt} to a random integer from 1 to 4
+            cancel event
+            if {uorecooldown::%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+
+            set {uorecooldown::%player%} to 1
+            message "&9..." to player
+            loop 4 times:
+                loop 20 times:
+                    make player see event-block as purple stained glass
+                    wait 1 ticks
+            
+                if {_num} > 99:
+                    drop 1 ancient debris above event-block's location without velocity
+                    message "&5You got 1 &lAncient Debris&r&e!" to player
+                    exit
+                if {_num} > 88:
+                    drop 1 emerald above event-block's location without velocity
+                    message "&5You got 1 &lEmerald&r&e!" to player
+                    exit
+                if {_num} > 77:
+                    drop 1 diamond above event-block's location without velocity
+                    message "&5You got 1 &lDiamond&r&e!" to player
+                    exit
+                if {_num} > 67:
+                    drop {_amnt} of iron ingot above event-block's location without velocity
+                    message "&eYou got %{_amnt}% &lIron&r&e!" to player
+                    exit
+                if {_num} > 59:
+                    drop {_amnt} * 9 of gold nugget above event-block's location without velocity
+                    message "&eYou got %{_amnt}% &lGold&r&e!" to player
+                    exit
+                if {_num} > 43:
+                drop {_amnt} of coal above event-block's location without velocity
+                    message "&eYou got %{_amnt}% &lCoal&r&e!" to player
+                    exit
+                if {_num} > 0:
+                    drop cobblestone above event-block's location without velocity
+                    message "&eYou got &lCobblestone&r&e!" to player
+                    exit
+            set {uorecooldown::%player%} to 0
+            make player see event-block as purple glazed terracotta
+
         if event-block = light blue glazed terracotta:
             set {_num} to a random integer from 0 to 100
             set {_amnt} to a random integer from 1 to 4
