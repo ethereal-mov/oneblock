@@ -415,7 +415,7 @@ on break:
                 message "&cWait!" to player
                 exit
 
-            set {orecooldown::%event-block's location%%player% to 1
+            set {orecooldown::%event-block's location%%player%} to 1
             message "&9..." to player
             loop 60 times:
 
