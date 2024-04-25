@@ -54,7 +54,7 @@ command /motherfuckerland:
 on load:
   set {_supercobble} to cobblestone of unbreaking 1 named "&eSuper Cobblestone"
   register new shaped recipe for {_supercobble} named "&eSuper Cobblestone" using cobblestone,cobblestone,cobblestone,cobblestone,cobblestone,cobblestone,cobblestone,cobblestone,cobblestone with id "supercobble"
-  register new shaped recipe for (9 cobblestone) using cobblestone of unbreaking 1 with id "supercobble_reverse"
+  register new unshaped recipe for (9 of cobblestone) using cobblestone of unbreaking 1 with id "supercobble_reverse"
   set {_superupgradedcobblegen} to green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 25 cobblestone."
   register new shaped recipe for {_superupgradedcobblegen} named "&lSUPER UPGRADED &eCobblestone Generator" using gray glazed terracotta, gray glazed terracotta,gray glazed terracotta,gray glazed terracotta,diamond,gray glazed terracotta,gray glazed terracotta,gray glazed terracotta,gray glazed terracotta with id "superupgraded_cobble_gen"
   set {_upgradedcobblegen} to gray glazed terracotta of Unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 8 cobblestone."
