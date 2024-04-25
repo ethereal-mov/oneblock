@@ -359,8 +359,7 @@ on break:
             set {fmobcooldown::%event-block's location%%player%} to 0
             make player see event-block as blue glazed terracotta
         if event-block = purple glazed terracotta:
-            set {_num} to a random integer from 0 to 100
-            set {_amnt} to a random integer from 1 to 4
+            
             cancel event
             if {uorecooldown::%player%} = 1:
                 cancel event
@@ -371,9 +370,11 @@ on break:
             message "&9..." to player
             loop 4 times:
                 loop 20 times:
+                    set {_num} to a random integer from 0 to 100
+                    set {_amnt} to a random integer from 1 to 4
                     make player see event-block as purple stained glass
                     wait 1 ticks
-            
+                
                 if {_num} > 99:
                     drop 1 ancient debris above event-block's location without velocity
                     message "&5You got 1 &lAncient Debris&r&e!" to player
