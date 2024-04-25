@@ -1,0 +1,60 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: VILLAGER_SPAWN_EGG
+        buy: 750
+        sell: 75
+      '2':
+        material: EMERALD
+        buy: 120
+        sell: 25
+      '3':
+        material: BARREL
+        buy: 200
+        sell: 20
+      '4':
+        material: BLAST_FURNACE
+        buy: 200
+        sell: 20
+      '5':
+        material: BREWING_STAND
+        buy: 250
+        sell: 25
+      '6':
+        material: CARTOGRAPHY_TABLE
+        buy: 200
+        sell: 20
+      '7':
+        material: CAULDRON
+        buy: 200
+        sell: 20
+      '8':
+        material: COMPOSTER
+        buy: 200
+        sell: 20
+      '9':
+        material: FLETCHING_TABLE
+        buy: 200
+        sell: 20
+      '10':
+        material: LECTERN
+        buy: 200
+        sell: 20
+      '11':
+        material: LOOM
+        buy: 200
+        sell: 20
+      '12':
+        material: SMITHING_TABLE
+        buy: 350
+        sell: 35
+      '13':
+        material: SMOKER
+        buy: 200
+        sell: 20
+      '14':
+        material: STONECUTTER
+        buy: 200
+        sell: 20

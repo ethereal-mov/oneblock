@@ -1,0 +1,14 @@
+enable: true
+slot: 14
+title: ''
+hidden: false
+sub-section: false
+display-item: false
+fill-item:
+  material: AIR
+nav-bar:
+  mode: INHERIT
+item:
+  material: BEDROCK
+  displayname: '&5&lO&r&5THER'
+  name: '&5&lO&r&5THER'

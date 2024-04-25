@@ -1,0 +1,28 @@
+pages:
+  page1:
+    gui-rows: 2
+    items:
+      '1':
+        material: LIGHT_GRAY_GLAZED_TERRACOTTA
+        buy: 30
+        sell: 10
+        name: "&9Cobblestone Generator"
+        lore:
+        - "Mine this with a shovel to break."
+        - "Mine this block with a pickaxe to generate cobblestone."
+      '2':
+        material: LIGHT_BLUE_GLAZED_TERRACOTTA
+        buy: 120
+        sell: 40
+        name: "&9Ore Generator"
+        lore:
+        - "Mine this with a shovel to break."
+        - "Mine this block with a pickaxe to have a chance to get an ore."
+      '3':
+        material: CYAN_GLAZED_TERRACOTTA
+        buy: 180
+        sell: 60
+        name: "&9Mob Spawner"
+        lore:
+        - "Mine this with a shovel to break."
+        - "Mine this block with a pickaxe to spawn a random mob."
