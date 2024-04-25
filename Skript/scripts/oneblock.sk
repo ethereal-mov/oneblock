@@ -377,31 +377,31 @@ on break:
                 if {_num} > 99:
                     drop 1 ancient debris above event-block's location without velocity
                     message "&5You got 1 &lAncient Debris&r&e!" to player
-                    exit
-                if {_num} > 88:
+                    
+                else if {_num} > 88:
                     drop 1 emerald above event-block's location without velocity
                     message "&5You got 1 &lEmerald&r&e!" to player
-                    exit
-                if {_num} > 77:
+                    
+                else if {_num} > 77:
                     drop 1 diamond above event-block's location without velocity
                     message "&5You got 1 &lDiamond&r&e!" to player
-                    exit
-                if {_num} > 67:
+                    
+                else if {_num} > 67:
                     drop {_amnt} of iron ingot above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lIron&r&e!" to player
-                    exit
-                if {_num} > 59:
+                    
+                else if {_num} > 59:
                     drop {_amnt} * 9 of gold nugget above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lGold&r&e!" to player
-                    exit
-                if {_num} > 43:
+                    
+                else if {_num} > 43:
                     drop {_amnt} of coal above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lCoal&r&e!" to player
-                    exit
-                if {_num} > 0:
+                    
+                else if {_num} > 0:
                     drop cobblestone above event-block's location without velocity
                     message "&eYou got &lCobblestone&r&e!" to player
-                    exit
+                    
             set {uorecooldown::%player%} to 0
             make player see event-block as purple glazed terracotta
 
