@@ -64,7 +64,7 @@ on load:
 
 on place of cobblestone:
     if enchantments of past event-block = Unbreaking 1:
-        message "&cDecompress this by right clicking."
+        message "&cDecompress this by right clicking." to player
         cancel event
 on rightclick holding cobblestone:
     if enchantments of player's tool = Unbreaking 1:
