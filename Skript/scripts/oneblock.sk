@@ -383,19 +383,19 @@ on break:
                     drop 1 emerald above event-block's location without velocity
                     message "&5You got 1 &lEmerald&r&e!" to player
                     
-                else if {_num} > 77:
+                else if {_num} > 80:
                     drop 1 diamond above event-block's location without velocity
                     message "&5You got 1 &lDiamond&r&e!" to player
                     
-                else if {_num} > 67:
+                else if {_num} > 70:
                     drop {_amnt} of iron ingot above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lIron&r&e!" to player
                     
-                else if {_num} > 59:
+                else if {_num} > 69:
                     drop {_amnt} * 9 of gold nugget above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lGold&r&e!" to player
                     
-                else if {_num} > 43:
+                else if {_num} > 23:
                     drop {_amnt} of coal above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lCoal&r&e!" to player
                     
