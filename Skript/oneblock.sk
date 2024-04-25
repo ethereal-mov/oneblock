@@ -8,24 +8,24 @@ on load:
 
 on damage:
     if attacker is a player:
-        if {%victim%.log} is false:
+        if {oneblock::%victim%.log} is false:
             send "&cYou've been hit. Log out within 10 seconds and you're dead." to victim
-            set {%victim%.log} to true
+            set {oneblock::%victim%.log} to true
             wait 10 seconds
-            set {%victim%.log} to false
+            set {oneblock::%victim%.log} to false
             send "&cYou can &lsafely &cLog out now." to victim
 
 on quit:
-    if {%player%.log} is true:
+    if {oneblock::%player%.log} is true:
         broadcast "&c%player% has combat logged!"
 
 on join:
-    if {%player%.log} is true:
+    if {oneblock::%player%.log} is true:
         execute console command "/clear %player%"
         kill player
         send "&cYou combat logged so now all of your stuff is gone." to player
         send "By the way, nobody has your stuff." to player
-        set {%player%.log} to false
+        set {oneblock::%player%.log} to false
 
 command /craft:
     aliases: /c, /craftingtable, /crafting
@@ -61,9 +61,9 @@ on load:
   set {_hostilemobgen} to red glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random hostile mobs."
   register new shaped recipe for {_hostilemobgen} named "&lFriendly &eMob Spawner" using cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, lava bucket, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, and cyan glazed terracotta with id "hostile_mob_gen"
 
-on leftclick of cobblestone of unbreaking 1:
+on leftclick of (cobblestone of unbreaking 1):
     cancel event
-    remove 1 of cobblestone of unbreaking 1 from player
+    remove 1 of (cobblestone of unbreaking 1) from player
     give 9 cobblestone to player
 on block break:
     if event-block's location = location(0.5, 64.5, 0.5, world "world"):
