@@ -43,6 +43,11 @@ command /head:
         set helmet of player to the player's held item
         remove player's held item from the player
 
+command /store:
+    aliases: /s
+    trigger:
+        make player execute command "/shop"
+
 command /motherfuckerland:
     aliases: /mfland
     trigger:
