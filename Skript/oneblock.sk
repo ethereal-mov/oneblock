@@ -180,7 +180,7 @@ on break:
                 loop 5 times:
                     make player see event-block as green stained glass
                     wait 4 ticks
-                drop (cobblestone of unbreaking 1 named "&eSuper Cobblestone" with lore of "Left click to decompress") 2 blocks above event-block's location without velocity
+                drop (cobblestone of unbreaking 1 named "&eSuper Cobblestone" with lore "Left click to decompress") 2 blocks above event-block's location without velocity
             set {_num} to a random integer from 0 to 10
             if {_num} > 7:
                 set {_chance} to a random integer from 1 to 4
