@@ -395,7 +395,7 @@ on break:
                     message "&eYou got %{_amnt}% &lGold&r&e!" to player
                     exit
                 if {_num} > 43:
-                drop {_amnt} of coal above event-block's location without velocity
+                    drop {_amnt} of coal above event-block's location without velocity
                     message "&eYou got %{_amnt}% &lCoal&r&e!" to player
                     exit
                 if {_num} > 0:
