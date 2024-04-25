@@ -1,0 +1,453 @@
+on load:
+    set {orecooldown::*} to 0
+    set {mobcooldown::*} to 0
+    set {hmobcooldown::*} to 0
+    set {fmobcooldown::*} to 0
+    set {ucobblecooldown::*} to 0
+    set {cobblecooldown::*} to 0
+
+on damage:
+    if attacker is a player:
+        if {%victim%.log} is false:
+            send "&cYou've been hit. Log out within 10 seconds and you're dead." to victim
+            set {%victim%.log} to true
+            wait 10 seconds
+            set {%victim%.log} to false
+            send "&cYou can &lsafely &cLog out now." to victim
+
+on quit:
+    if {%player%.log} is true:
+        broadcast "&c%player% has combat logged!"
+
+on join:
+    if {%player%.log} is true:
+        execute console command "/clear %player%"
+        kill player
+        send "&cYou combat logged so now all of your stuff is gone." to player
+        send "By the way, nobody has your stuff." to player
+        set {%player%.log} to false
+
+command /craft:
+    aliases: /c, /craftingtable, /crafting
+    trigger:
+        open crafting table to player
+
+command /enderchest:
+    aliases: /ec, /ender
+    trigger:
+        open ender chest of player to player
+
+command /head:
+    aliases: /hat
+    trigger:
+        set helmet of player to the player's held item
+        remove player's held item from the player
+
+command /motherfuckerland:
+    aliases: /mfland
+    trigger:
+        if player is op:
+            make player execute command "/give %player% wooden_sword{display:{Name:'["""",{""text"":""motherfucker land"",""italic"":false}]'},Enchantments:[{lvl:9999,id:fire_aspect},{lvl:9999,id:sharpness}],Damage:80,RepairCost:9999}"
+        else:
+            send "&cYou are not op." to player
+
+on load:
+  set {_upgradedcobblegen} to gray glazed terracotta of Unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 8 cobblestone."
+  register new shaped recipe for {_upgradedcobblegen} named "&lUPGRADED &eCobblestone Generator" using light gray glazed terracotta, light gray glazed terracotta, light gray glazed terracotta, light gray glazed terracotta, diamond, light gray glazed terracotta, light gray glazed terracotta, light gray glazed terracotta, and light gray glazed terracotta with id "upgraded_cobble_gen"
+  set {_friendlymobgen} to blue glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random friendly mobs."
+  register new shaped recipe for {_friendlymobgen} named "&lFriendly &eMob Spawner" using cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, water bucket, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, and cyan glazed terracotta with id "friendly_mob_gen"
+  set {_hostilemobgen} to red glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random hostile mobs."
+  register new shaped recipe for {_hostilemobgen} named "&lFriendly &eMob Spawner" using cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, lava bucket, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, and cyan glazed terracotta with id "hostile_mob_gen"
+
+on block break:
+    if event-block's location = location(0.5, 64.5, 0.5, world "world"):
+        cancel event
+        if event-entity is a player:
+            give 1 dirt to player
+
+on inventory click:
+    set max repair cost of event-inventory to 32767
+
+on every 2 seconds:
+    if block at location(0.5, 64.5, 0.5, world "world") is not dirt:
+        broadcast "<&cHerobrine&r> &kabcdef&rWHO DID THAT?&kabcdef&r"
+        execute console command "/fill 0 64 0 0 64 0 dirt"
+
+
+on place:
+    if event-block = water or lava:
+        if enchantments of player's tool = Unbreaking 1:
+            wait a tick
+            remove 1 bucket from the player
+on walking on any glazed terracotta:
+    if player's tool is a pickaxe:
+        if event-block = light blue glazed terracotta:
+            send action bar "This is an &eOre Generator&r. Mine to &e&luse&r it." to player
+        if event-block = light gray glazed terracotta or gray glazed terracotta:
+            send action bar "This is an &eCobblestone Generator&r. Mine to &e&luse&r it." to player
+        if event-block = cyan glazed terracotta:
+            send action bar "This is an &eMob Spawner&r. Mine to &e&luse&r it." to player
+    else if player's tool is a shovel:
+        if event-block = light blue glazed terracotta:
+            send action bar "This is an &eOre Generator&r. Mine to &c&lbreak&r it." to player
+        if event-block = light gray glazed terracotta or gray glazed terracotta:
+            send action bar "This is an &eCobblestone Generator&r. Mine to &c&lbreak&r it." to player
+        if event-block = cyan glazed terracotta:
+            send action bar "This is an &eMob Spawner&r. Mine to &c&lbreak&r it." to player
+    else:
+        if event-block = light blue glazed terracotta:
+            send action bar "This is an &eOre Generator&r." to player
+        if event-block = light gray glazed terracotta or gray glazed terracotta:
+            send action bar "This is an &eCobblestone Generator&r." to player
+        if event-block = cyan glazed terracotta:
+            send action bar "This is an &eMob Spawner&r." to player
+
+on break:
+    if event-block = any glazed terracotta:
+        if player's tool is a shovel:
+            cancel event
+            message "&cYour shovel is too fast." to player
+        if player's tool is a pickaxe:
+            cancel event
+        if player's tool is not a pickaxe or a shovel:
+            cancel event
+            message "&r" to player
+            message "&cThis is the wrong tool." to player
+            message "Use a &lshovel&r to break this." to player
+            message "Use a &lpickaxe&r to use this." to player
+            message "&r" to player
+    if player's tool is a pickaxe:
+        if event-block = light gray glazed terracotta:
+            if {cobblecooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {cobblecooldown::%event-block's location%%player%} to 1
+            drop cobblestone above event-block's location without velocity
+            loop 5 times:
+
+                make player see event-block as light gray stained glass
+                wait 1 ticks
+            set {cobblecooldown::%event-block's location%%player%} to 0
+            make player see event-block as light gray glazed terracotta
+        if event-block = gray glazed terracotta:
+            if {ucobblecooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {ucobblecooldown::%event-block's location%%player%} to 1
+
+            loop 8 times:
+                make player see event-block as gray stained glass
+                wait 3 ticks
+                drop cobblestone 2 blocks above event-block's location without velocity
+            set {_num} to a random integer from 0 to 10
+            if {_num} = 10:
+                set {_chance} to a random integer from 1 to 4
+                set {_item::1} to "lapis lazuli"
+                set {_item::2} to "iron ingot"
+                set {_item::3} to "redstone ore"
+                set {_item::4} to "gold ingot"
+                if {_chance} is not 3 or 1:
+                    message "&aYou got a %({_item::%{_chance}%} parsed as an item)%" to player
+                    drop ({_item::%{_chance}%} parsed as an item) 2 blocks above event-block's location without velocity
+                else:
+                    message "&aYou got 8 %({_item::%{_chance}%} parsed as an item)%" to player
+                    drop 8 of ({_item::%{_chance}%} parsed as an item) 2 blocks above event-block's location without velocity
+
+
+            loop 32 times:
+
+                make player see event-block as gray stained glass
+                wait 1 ticks
+
+            set {ucobblecooldown::%event-block's location%%player%} to 0
+            make player see event-block as gray glazed terracotta
+        if event-block = cyan glazed terracotta:
+            set {_num} to a random integer from 0 to 100
+            set {_mob} to a random integer from 1 to 9
+            set {animal::1} to "cow"
+            set {animal::2} to "chicken"
+            set {animal::3} to "sheep"
+            set {animal::4} to "cod"
+            set {animal::5} to "rabbit"
+            set {animal::6} to "salmon"
+            set {animal::7} to "wolf"
+            set {animal::8} to "pig"
+            set {animal::9} to "mooshroom"
+            set {hostile::1} to "zombie"
+            set {hostile::2} to "skeleton"
+            set {hostile::3} to "silverfish"
+            set {hostile::4} to "creeper"
+            set {hostile::5} to "phantom"
+            set {hostile::6} to "spider"
+            set {hostile::7} to "enderman"
+            set {hostile::8} to "vindicator"
+            set {hostile::9} to "pillager"
+            if {mobcooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {mobcooldown::%event-block's location%%player%} to 1
+            cancel event
+            if {_num} > 66:
+                message "&cYou got a fiesty one!" to player
+                spawn ({hostile::%{_mob}%} parsed as entity type) above event-block's location
+
+            else if {_num} > 0:
+                message "&eYou got a friendly one!" to player
+                spawn ({animal::%{_mob}%} parsed as entity type) above event-block's location
+
+            loop 120 times:
+
+                make player see event-block as cyan stained glass
+                wait 1 ticks
+            set {mobcooldown::%event-block's location%%player%} to 0
+            make player see event-block as cyan glazed terracotta
+        if event-block = cyan glazed terracotta:
+            set {_num} to a random integer from 0 to 100
+            set {_mob} to a random integer from 1 to 9
+            set {animal::1} to "cow"
+            set {animal::2} to "chicken"
+            set {animal::3} to "sheep"
+            set {animal::4} to "cod"
+            set {animal::5} to "rabbit"
+            set {animal::6} to "salmon"
+            set {animal::7} to "wolf"
+            set {animal::8} to "pig"
+            set {animal::9} to "mooshroom"
+            set {hostile::1} to "zombie"
+            set {hostile::2} to "skeleton"
+            set {hostile::3} to "silverfish"
+            set {hostile::4} to "creeper"
+            set {hostile::5} to "phantom"
+            set {hostile::6} to "spider"
+            set {hostile::7} to "enderman"
+            set {hostile::8} to "vindicator"
+            set {hostile::9} to "pillager"
+            if {mobcooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {mobcooldown::%event-block's location%%player%} to 1
+            cancel event
+            if {_num} > 66:
+                message "&cYou got a fiesty one!" to player
+                spawn ({hostile::%{_mob}%} parsed as entity type) above event-block's location
+
+            else if {_num} > 0:
+                message "&eYou got a friendly one!" to player
+                spawn ({animal::%{_mob}%} parsed as entity type) above event-block's location
+
+            loop 120 times:
+
+                make player see event-block as cyan stained glass
+                wait 1 ticks
+            set {mobcooldown::%event-block's location%%player%} to 0
+            make player see event-block as cyan glazed terracotta
+        if event-block = red glazed terracotta:
+            set {_mob} to a random integer from 1 to 9
+            set {hostile::1} to "zombie"
+            set {hostile::2} to "skeleton"
+            set {hostile::3} to "silverfish"
+            set {hostile::4} to "creeper"
+            set {hostile::5} to "phantom"
+            set {hostile::6} to "spider"
+            set {hostile::7} to "enderman"
+            set {hostile::8} to "vindicator"
+            set {hostile::9} to "pillager"
+            if {hmobcooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {hmobcooldown::%event-block's location%%player%} to 1
+            cancel event
+            message "&cYou got a %({hostile::%{_mob}%} parsed as entity type)%!" to player
+            spawn ({hostile::%{_mob}%} parsed as entity type) above event-block's location
+
+            loop 100 times:
+
+                make player see event-block as red stained glass
+                wait 1 ticks
+            set {hmobcooldown::%event-block's location%%player%} to 0
+            make player see event-block as red glazed terracotta
+        if event-block = blue glazed terracotta:
+            set {_mob} to a random integer from 1 to 9
+            set {animal::1} to "cow"
+            set {animal::2} to "chicken"
+            set {animal::3} to "sheep"
+            set {animal::4} to "cod"
+            set {animal::5} to "rabbit"
+            set {animal::6} to "salmon"
+            set {animal::7} to "wolf"
+            set {animal::8} to "pig"
+            set {animal::9} to "mooshroom"
+            if {fmobcooldown::%event-block's location%%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+            set {fmobcooldown::%event-block's location%%player%} to 1
+            cancel event
+            message "&eYou got a %({animal::%{_mob}%} parsed as entity type)%!" to player
+            spawn ({animal::%{_mob}%} parsed as entity type) above event-block's location
+
+            loop 100 times:
+
+                make player see event-block as blue stained glass
+                wait 1 ticks
+            set {fmobcooldown::%event-block's location%%player%} to 0
+            make player see event-block as blue glazed terracotta
+        if event-block = light blue glazed terracotta:
+            set {_num} to a random integer from 0 to 100
+            set {_amnt} to a random integer from 1 to 4
+            cancel event
+            if {orecooldown::%player%} = 1:
+                cancel event
+                message "&cWait!" to player
+                exit
+
+            set {orecooldown::%player%} to 1
+            message "&9..." to player
+            loop 60 times:
+
+                make player see event-block as light blue stained glass
+                wait 1 ticks
+            set {orecooldown::%player%} to 0
+            make player see event-block as light blue glazed terracotta
+
+            if {_num} = 99:
+                drop 1 ancient debris above event-block's location without velocity
+                message "&5You got 1 &lAncient Debris&r&e!" to player
+                exit
+            if {_num} > 98:
+                drop 1 emerald above event-block's location without velocity
+                message "&5You got 1 &lEmerald&r&e!" to player
+                exit
+            if {_num} > 97:
+                drop 1 diamond above event-block's location without velocity
+                message "&5You got 1 &lDiamond&r&e!" to player
+                exit
+            if {_num} > 87:
+                drop {_amnt} of iron ingot above event-block's location without velocity
+                message "&eYou got %{_amnt}% &lIron&r&e!" to player
+                exit
+            if {_num} > 79:
+                drop {_amnt} * 9 of gold nugget above event-block's location without velocity
+                message "&eYou got %{_amnt}% &lGold&r&e!" to player
+                exit
+            if {_num} > 73:
+                drop {_amnt} of coal above event-block's location without velocity
+                message "&eYou got %{_amnt}% &lCoal&r&e!" to player
+                exit
+            if {_num} > 10:
+                drop cobblestone above event-block's location without velocity
+                message "&eYou got &lCobblestone&r&e!" to player
+                exit
+            if {_num} > 0:
+                message "&cYou got &lnothing." to player
+                exit
+
+on chat:
+    wait 10 ticks
+    if the message contains "i want skibidi gravel from the skibidi toilet":
+        if the message does not contain "please":
+            broadcast "<SkibidiToilet3000> say it again but with the magic word and say it correctly"
+    if the message is "i want skibidi diamonds from the skibidi toilet":
+        broadcast "<SkibidiToilet3000> nuh uh"
+    if the message contains "i love you":
+        broadcast "<SkibidiToilet3000> dont say that bullshit in minecraft ever again"
+    if the message is "i want skibidi gravel from the skibidi toilet please":
+        give 1 gravel to player
+        broadcast "<SkibidiToilet3000> fine"
+
+on block damage:
+    if event-block = any glazed terracotta:
+        if player's tool is a shovel:
+            wait 10 ticks
+            if event-block = gray glazed terracotta:
+                give player gray glazed terracotta of unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 8 cobblestone."
+            if event-block = red glazed terracotta:
+                give player red glazed terracotta of Unbreaking 1 named "&lHostile &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random hostile mobs."
+            if event-block = blue glazed terracotta:
+                give player blue glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random friendly mobs."
+            if event-block = light gray glazed terracotta:
+                give player light gray glazed terracotta named "&eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate cobblestone."
+            if event-block = light blue glazed terracotta:
+                give player light blue glazed terracotta named "&eOre Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to have a chance to get an ore."
+            if event-block = cyan glazed terracotta:
+                give player cyan glazed terracotta named "&9Mob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn a random mob."
+            break event-block using shovel
+
+on command:
+	if command is "pl", "plugins", "minecraft:pl" or "minecraft:plugins" or "bukkit:pl" or "bukkit:plugins":
+		if player does not have permission "plugins.see":
+			cancel event
+			send "&fPlugins (1): &aDeblokMC"
+		else:
+			stop trigger
+
+
+
+command /help [<string>]:
+    trigger:
+        if arg-1 is not set:
+            message "&lDeblokMC Help&r:" to player
+            message "&e/help generators&r for help on using generators" to player
+            message "&e/getstarted&r to get started" to player
+        else if arg-1 is "generators":
+            message "To get started with a generator:" to player
+            message "First you can mine it with a &epickaxe&r to &euse&r it." to player
+            message "Then if you don't want it, mine it with a &cshovel&r to &cdestroy&r it." to player
+        else if arg-1 is "getstarted":
+            message "&cUse /getstarted." to player
+        else:
+            message "&cIncorrect usage. Try /help."
+command /getstarted:
+    usage: /getstarted
+    trigger:
+        message "&eGet started by mining the piece of dirt in the center ( at 0,0 )." to player
+        message "Then once you have enough dirt, you can sell it using &e/sellgui&r" to player
+        message "and finally with your braincells (or money) you can buy other" to player
+        message " items using &e/shop&r."
+
+on death of player:
+    keep the experience
+
+on death of a enderman:
+
+    set {_loc} to victim's location
+    set {_num} to a random integer from 0 to 100
+    if {_num} is 1:
+        if attacker is a player:
+            drop an eye of ender at position of victim
+            message "&6You got an &leye of ender&r&8." to attacker
+
+on death of a creeper:
+    set {_loc} to victim's location
+    if attacker is a player:
+        set {_num} to a random integer from 0 to 100
+        set {_disc} to a random integer from 0 to 13
+        set {discs::1} to "music disc 13"
+        set {discs::2} to "music disc cat"
+        set {discs::3} to "music disc 11"
+        set {discs::4} to "music disc mellohi"
+        set {discs::5} to "music disc blocks"
+        set {discs::6} to "music disc chirp"
+        set {discs::7} to "music disc far"
+        set {discs::8} to "music disc mall"
+        set {discs::9} to "music disc stal"
+        set {discs::10} to "music disc strad"
+        set {discs::11} to "music disc ward"
+        set {discs::12} to "music disc wait"
+        set {discs::13} to "music disc pigstep"
+        if {_num} is 1:
+            message "&6You got &l%({discs::%{_disc}%} parsed as item)%&r&8." to attacker
+            drop ({discs::%{_disc}%} parsed as item) at position of victim
+
+on break:
+    if event-block is sand:
+        set {_num} to a random integer from 0 to 100
+        if {_num} > 92:
+            send "&eYou got gravel!" to player
+            drop gravel above event-block without velocity
+
