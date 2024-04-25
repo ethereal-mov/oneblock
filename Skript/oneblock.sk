@@ -61,10 +61,14 @@ on load:
   set {_hostilemobgen} to red glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random hostile mobs."
   register new shaped recipe for {_hostilemobgen} named "&lFriendly &eMob Spawner" using cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, lava bucket, cyan glazed terracotta, cyan glazed terracotta, cyan glazed terracotta, and cyan glazed terracotta with id "hostile_mob_gen"
 
-on leftclick of (cobblestone of unbreaking 1):
-    cancel event
-    remove 1 of (cobblestone of unbreaking 1) from player
-    give 9 cobblestone to player
+on leftclick of cobblestone:
+    if enchantments of player's tool = Unbreaking 1:
+        cancel event
+        wait a tick
+        remove 1 of cobblestone of unbreaking 1 from player
+        loop 9 times:
+            drop 1 cobblestone 1 block above player
+            wait a tick
 on block break:
     if event-block's location = location(0.5, 64.5, 0.5, world "world"):
         cancel event
