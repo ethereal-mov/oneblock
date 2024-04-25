@@ -89,7 +89,7 @@ on inventory click:
     set max repair cost of event-inventory to 32767
 
 on every 2 seconds:
-    if block at location(0.5, 64.5, 0.5, world "world") is not dirt:
+    if block at location(0.5, 64.5, 0.5, world "world") is not dirt or grass block:
         broadcast "<&cHerobrine&r> &kabcdef&rWHO DID THAT?&kabcdef&r"
         execute console command "/fill 0 64 0 0 64 0 dirt"
 
