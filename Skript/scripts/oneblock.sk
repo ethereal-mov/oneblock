@@ -5,6 +5,7 @@ on load:
     set {fmobcooldown::*} to 0
     set {ucobblecooldown::*} to 0
     set {cobblecooldown::*} to 0
+    set {oneblock::*} to false
 
 on damage:
     if attacker is a player:
@@ -57,7 +58,7 @@ command /motherfuckerland:
             send "&cYou are not op." to player
 
 on load:
-  set {_superupgradedcobblegen} to green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 25 cobblestone."
+  set {_superupgradedcobblegen} to green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 25 cobblestone."
   register new shaped recipe for {_superupgradedcobblegen} named "&lSUPER UPGRADED &eCobblestone Generator" using gray glazed terracotta, and gray glazed terracotta,and gray glazed terracotta,and gray glazed terracotta,and diamond,and gray glazed terracotta,and gray glazed terracotta,and gray glazed terracotta,and gray glazed terracotta with id "superupgraded_cobble_gen"
   set {_upgradedcobblegen} to gray glazed terracotta of Unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 8 cobblestone."
   register new shaped recipe for {_upgradedcobblegen} named "&lUPGRADED &eCobblestone Generator" using light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and iron ingot, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta, and light gray glazed terracotta with id "upgraded_cobble_gen"
@@ -421,17 +422,17 @@ on block damage:
             if event-block = green glazed terracotta:
                 give player green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 25 cobblestone."
             if event-block = gray glazed terracotta:
-                give player gray glazed terracotta of unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 8 cobblestone."
+                give player gray glazed terracotta of unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 8 cobblestone."
             if event-block = red glazed terracotta:
-                give player red glazed terracotta of Unbreaking 1 named "&lHostile &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random hostile mobs."
+                give player red glazed terracotta of Unbreaking 1 named "&lHostile &eMob Spawner" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to spawn 4 random hostile mobs."
             if event-block = blue glazed terracotta:
-                give player blue glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn 4 random friendly mobs."
+                give player blue glazed terracotta of Unbreaking 1 named "&lFriendly &eMob Spawner" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to spawn 4 random friendly mobs."
             if event-block = light gray glazed terracotta:
-                give player light gray glazed terracotta named "&eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate cobblestone."
+                give player light gray glazed terracotta named "&eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate cobblestone."
             if event-block = light blue glazed terracotta:
-                give player light blue glazed terracotta named "&eOre Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to have a chance to get an ore."
+                give player light blue glazed terracotta named "&eOre Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to have a chance to get an ore."
             if event-block = cyan glazed terracotta:
-                give player cyan glazed terracotta named "&9Mob Spawner" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to spawn a random mob."
+                give player cyan glazed terracotta named "&9Mob Spawner" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to spawn a random mob."
             break event-block using shovel
 
 on command:
