@@ -144,6 +144,7 @@ on break:
             message "Use a &lpickaxe&r to use this." to player
             message "&r" to player
     if player's tool is a pickaxe:
+
         if event-block = light gray glazed terracotta:
             if {cobblecooldown::%event-block's location%%player%} = 1:
                 cancel event
@@ -151,9 +152,10 @@ on break:
                 exit
             set {cobblecooldown::%event-block's location%%player%} to 1
             drop cobblestone above event-block's location without velocity
-            loop 5 times:
 
-                make player see event-block as light gray stained glass
+            loop 12 times:
+
+                make player see event-block as air
                 wait 1 ticks
             set {cobblecooldown::%event-block's location%%player%} to 0
             make player see event-block as light gray glazed terracotta
@@ -417,7 +419,7 @@ on break:
 
             set {orecooldown::%event-block's location%%player%} to 1
             message "&9..." to player
-            loop 60 times:
+            loop 120 times:
 
                 make player see event-block as light blue stained glass
                 wait 1 ticks
@@ -428,11 +430,11 @@ on break:
                 drop 1 ancient debris above event-block's location without velocity
                 message "&5You got 1 &lAncient Debris&r&e!" to player
                 exit
-            if {_num} > 98:
+            if {_num} = 98:
                 drop 1 emerald above event-block's location without velocity
                 message "&5You got 1 &lEmerald&r&e!" to player
                 exit
-            if {_num} > 97:
+            if {_num} = 97:
                 drop 1 diamond above event-block's location without velocity
                 message "&5You got 1 &lDiamond&r&e!" to player
                 exit
@@ -456,6 +458,7 @@ on break:
                 message "&cYou got &lnothing." to player
                 exit
 
+
 on chat:
     wait 10 ticks
     if the message contains "i want skibidi gravel from the skibidi toilet":
@@ -473,6 +476,8 @@ on block damage:
     if event-block = any glazed terracotta:
         if player's tool is a shovel:
             wait 10 ticks
+            if event-block = purple glazed terracotta:
+                give player 9 light blue glazed terracotta named "&eOre Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to have a chance to get an ore."
             if event-block = green glazed terracotta:
                 give player green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 25 cobblestone."
             if event-block = gray glazed terracotta:
