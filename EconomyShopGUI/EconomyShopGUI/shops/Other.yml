@@ -1,0 +1,22 @@
+pages:
+  page1:
+    gui-rows: 2
+    items:
+      '1':
+        material: END_PORTAL_FRAME
+        buy: 49999
+        displaylore:
+        - "Foundation for an ender portal."
+      '2':
+        material: END_STONE
+        buy: 500
+        sell: 50
+      '3':
+        material: SHULKER_BOX
+        buy: 25000
+        sell: 250
+      '4':
+        material: BEDROCK
+        buy: 19999999
+        displaylore:
+        - "I don't think anyone will have enough to buy this."

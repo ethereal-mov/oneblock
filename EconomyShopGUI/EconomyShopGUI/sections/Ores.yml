@@ -1,0 +1,14 @@
+enable: true
+slot: 13
+title: ''
+hidden: false
+sub-section: false
+display-item: false
+fill-item:
+  material: AIR
+nav-bar:
+  mode: INHERIT
+item:
+  material: DIAMOND_ORE
+  displayname: '&7&lO&r&7RES'
+  name: '&7&lO&r&7RES'

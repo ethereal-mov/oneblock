@@ -1,0 +1,14 @@
+enable: true
+slot: 10
+title: ''
+hidden: false
+sub-section: false
+display-item: false
+fill-item:
+  material: AIR
+nav-bar:
+  mode: INHERIT
+item:
+  material: OAK_SAPLING
+  displayname: '&5&lE&r&5SSENTIALS'
+  name: '&5&lE&r&5SSENTIALS'

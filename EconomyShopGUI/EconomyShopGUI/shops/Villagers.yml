@@ -4,7 +4,7 @@ pages:
     items:
       '1':
         material: VILLAGER_SPAWN_EGG
-        buy: 1200
+        buy: 750
         sell: 75
       '2':
         material: EMERALD
