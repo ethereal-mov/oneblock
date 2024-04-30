@@ -33,7 +33,7 @@ pages:
       '8':
         material: COMPOSTER
         buy: 200
-        sell: 20
+        sell: 10
       '9':
         material: FLETCHING_TABLE
         buy: 200

@@ -44,7 +44,6 @@ entity:1f8cf94e-aa67-4a98-b8d4-be5f94015140.log, boolean, 00
 entity:399546e1-e515-42da-ad04-981de83961cd.log, boolean, 00
 entity:9beebaef-0e05-4ddc-be59-d99d9249703f.log, boolean, 00
 fmobcooldown::1, long, 0000000000000000
-"fmobcooldown::world:20.5,64.5,-3.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
 "fmobcooldown::world:20.5,64.5,-3.5a117aaeb-1a4c-4178-9b02-e950815ba4b8", long, 0000000000000000
 "fmobcooldown::world:20.5,64.5,-3.5c42c6fc6-e8b9-40b9-bdbf-82db3c684ee8", long, 0000000000000000
 hmobcooldown::1, long, 0000000000000000
@@ -60,8 +59,6 @@ hostile::9, string, 800870696C6C61676572
 mobcooldown::1, long, 0000000000000000
 oneblock::1, boolean, 00
 orecooldown::1, long, 0000000000000000
-"orecooldown::world:-30.5,40.5,-2.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
-"orecooldown::world:-30.5,40.5,-1.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
 "orecooldown::world:-22.5,40.5,-4.5486819ac-4342-4f9d-96a0-8dd2fd0d2b7e", long, 0000000000000000
 "orecooldown::world:-22.5,40.5,-3.5486819ac-4342-4f9d-96a0-8dd2fd0d2b7e", long, 0000000000000000
 "orecooldown::world:-22.5,40.5,-2.5486819ac-4342-4f9d-96a0-8dd2fd0d2b7e", long, 0000000000000000
@@ -79,10 +76,10 @@ orecooldown::1, long, 0000000000000000
 "orecooldown::world:-22.5,42.5,-0.5486819ac-4342-4f9d-96a0-8dd2fd0d2b7e", long, 0000000000000000
 "orecooldown::world:1.5,57.5,-0.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
 "orecooldown::world:1.5,57.5,0.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
-"orecooldown::world:1.5,57.5,1.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
-"orecooldown::world:1.5,57.5,2.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
-"orecooldown::world:1.5,57.5,3.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
-"orecooldown::world:1.5,57.5,4.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
+"orecooldown::world:1.5,57.5,1.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
+"orecooldown::world:1.5,57.5,2.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
+"orecooldown::world:1.5,57.5,3.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
+"orecooldown::world:1.5,57.5,4.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
 "orecooldown::world:1.5,57.5,5.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
 "orecooldown::world:1.5,58.5,-0.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000000
 "orecooldown::world:1.5,58.5,0.5971c47eb-d1be-4453-aa28-a233ba82acde", long, 0000000000000001
