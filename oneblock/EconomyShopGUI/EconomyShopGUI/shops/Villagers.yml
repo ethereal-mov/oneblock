@@ -4,7 +4,7 @@ pages:
     items:
       '1':
         material: VILLAGER_SPAWN_EGG
-        buy: 1200
+        buy: 750
         sell: 75
       '2':
         material: EMERALD
@@ -33,7 +33,7 @@ pages:
       '8':
         material: COMPOSTER
         buy: 200
-        sell: 10
+        sell: 20
       '9':
         material: FLETCHING_TABLE
         buy: 200

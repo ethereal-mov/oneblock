@@ -1,0 +1,52 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: DIRT
+        buy: 3
+        sell: 1
+      '2':
+        material: GRASS_BLOCK
+        buy: 3
+        sell: 1
+      '3':
+        material: SAND
+        buy: 3
+        sell: 1
+      '4':
+        material: OAK_PLANKS
+        buy: 6
+        sell: 2
+      '5':
+        material: STICK
+        buy: 3
+        sell: 1
+      '6':
+        material: COBBLESTONE
+        buy: 6
+        sell: 2
+      '7':
+        material: OAK_SAPLING
+        buy: 12
+        sell: 4
+      '8':
+        material: OAK_LOG
+        buy: 12
+        sell: 4
+      '9':
+        material: WATER_BUCKET
+        buy: 18
+        sell: 6
+        displaylore: 
+          - "&5&lCan only be used &r&eonce&r&5&l!"
+        enchantments: 
+          - "unbreaking:1"
+      '10':
+        material: LAVA_BUCKET
+        buy: 18
+        sell: 6
+        displaylore: 
+          - "&5&lCan only be used &r&eonce&r&5&l!"
+        enchantments: 
+          - "unbreaking:1"

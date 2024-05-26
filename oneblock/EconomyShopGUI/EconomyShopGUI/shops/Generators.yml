@@ -4,7 +4,7 @@ pages:
     items:
       '1':
         material: LIGHT_GRAY_GLAZED_TERRACOTTA
-        buy: 130
+        buy: 30
         sell: 10
         name: "&9Cobblestone Generator"
         lore:
@@ -12,7 +12,7 @@ pages:
         - "Mine this block with a pickaxe to generate cobblestone."
       '2':
         material: LIGHT_BLUE_GLAZED_TERRACOTTA
-        buy: 320
+        buy: 120
         sell: 40
         name: "&9Ore Generator"
         lore:
@@ -20,7 +20,7 @@ pages:
         - "Mine this block with a pickaxe to have a chance to get an ore."
       '3':
         material: CYAN_GLAZED_TERRACOTTA
-        buy: 480
+        buy: 180
         sell: 60
         name: "&9Mob Spawner"
         lore:
