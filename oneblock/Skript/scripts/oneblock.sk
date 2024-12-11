@@ -23,12 +23,18 @@ on quit:
         broadcast "&c%player% has combat logged!"
 
 on join:
-    if {oneblock::%player%.log} is true:
-        execute console command "/clear %player%"
-        kill player
-        send "&cYou combat logged so now all of your stuff is gone." to player
-        send "By the way, nobody has your stuff." to player
-        set {oneblock::%player%.log} to false
+	if {oneblock::%player%.firstjoin} is false:
+        send "Welcome to Deblok, a gamemode originally made by rare1k, and further developed by the Ethereal team." to player
+		send "To start, break the dirt in the middle of the world." to player
+		send "Once you collect some dirt, do /sell to sell your dirt, and /shop to buy materials!" to player
+		send "Have fun!" to player
+		set {oneblock::%player%.firstjoin} to true
+	if {oneblock::%player%.log} is true:
+		execute console command "/clear %player%"
+		kill player
+		send "&cYou combat logged so now all of your stuff is gone." to player
+		send "By the way, nobody has your stuff." to player
+		set {oneblock::%player%.log} to false
 
 command /craft:
     aliases: /c, /craftingtable, /crafting
@@ -94,12 +100,6 @@ on block break:
 
 on inventory click:
     set max repair cost of event-inventory to 32767
-
-on every 2 seconds:
-    if block at location(0.5, 64.5, 0.5, world "world") is not dirt or grass block:
-        broadcast "<&cHerobrine&r> &kabcdef&rWHO DID THAT?&kabcdef&r"
-        execute console command "/fill 0 64 0 0 64 0 dirt"
-
 
 on place:
     if event-block = water or lava:
@@ -479,7 +479,7 @@ on block damage:
             if event-block = purple glazed terracotta:
                 give player 9 light blue glazed terracotta named "&eOre Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to have a chance to get an ore."
             if event-block = green glazed terracotta:
-                give player green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", "Mine this block with a pickaxe to generate 25 cobblestone."
+                give player green glazed terracotta of Unbreaking 1 named "&lSUPER UPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 25 cobblestone."
             if event-block = gray glazed terracotta:
                 give player gray glazed terracotta of unbreaking 1 named "&lUPGRADED &eCobblestone Generator" with lore "Mine this with a shovel to break.", and "Mine this block with a pickaxe to generate 8 cobblestone."
             if event-block = red glazed terracotta:
