@@ -3,30 +3,23 @@ pages:
     gui-rows: 2
     items:
       '1':
-        material: NETHERITE_INGOT
-        buy: 27650
-      '2':
-        material: ANCIENT_DEBRIS
-        buy: 5500
-        sell: 120
-      '3':
         material: DIAMOND
-        buy: 2700
+        buy: 2000
         sell: 200
-      '4':
+      '2':
         material: IRON_INGOT
-        buy: 950
+        buy: 850
         sell: 65
-      '5':
+      '3':
         material: GOLD_INGOT
-        buy: 750
+        buy: 550
         sell: 65
-      '6':
+      '4':
         material: GOLD_NUGGET
         buy: 75
         sell: 8
-      '7':
+      '5':
         material: COAL
-        buy: 170
-        sell: 10
+        buy: 180
+        sell: 20
 
